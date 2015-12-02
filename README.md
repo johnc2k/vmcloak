@@ -27,3 +27,12 @@ For a quick walkthrough on the general usage of VMCloak, please refer to the
 following blogpost: [http://jbremer.org/vmcloak3][blogpost].
 
 [blogpost]: http://jbremer.org/vmcloak3
+
+Custom Mods
+-----------
+
+Mods added to the custom folder, I will eventually add these into the vmcloak
+packages, manually applied for now.
+
+* Win7
+* Office 2010
