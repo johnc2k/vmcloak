@@ -37,3 +37,27 @@ Windows Registry Editor Version 5.00
 "Excel.Sheet.8"=hex
 "Excel.Sheet.12"=hex
 "AcroExch.Document.11"=hex
+
+; Office 2010: Disable Clip Art and Media downloads from the client and from Office.com
+[HKEY_CURRENT_USER\software\policies\microsoft\office\14.0\common\internet]
+"DisableClipArtAndMediaDownload"=dword:00000001
+
+; Office 2010:  Disable template downloads from the client and from Office.com
+[HKEY_CURRENT_USER\software\policies\microsoft\office\14.0\common\internet]
+"DisableTemplateDownload"=dword:00000001
+
+; Office 2010: Disable access to updates, add-ins, and patches on Office.com
+[HKEY_CURRENT_USER\software\policies\microsoft\office\14.0\common\internet]
+"DisableDownloadCenterAccess"=dword:00000001
+
+; Office 2010: Prevents users from uploading document templates to the Office.com Community.
+[HKEY_CURRENT_USER\software\policies\microsoft\office\14.0\common\internet]
+"DisableCustomerSubmittedUpload"=dword:00000001
+
+; Office 2010: Disable training practice downloads from Office.com
+[HKEY_CURRENT_USER\software\policies\microsoft\office\14.0\common\internet]
+"DisableTrainingPracticeDownload"=dword:00000001
+
+; Office 2010: Disable customer-submitted templates downloads from Office.com
+[HKEY_CURRENT_USER\software\policies\microsoft\office\14.0\common\internet]
+"DisableCustomerSubmittedDownload"=dword:00000001
