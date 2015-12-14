@@ -28,3 +28,12 @@ Windows Registry Editor Version 5.00
 ; Win7: Set IE Homepage
 [HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main]
 "Start Page"="about:blank"
+
+; Win7: Disable: IE8 Welcome Screen
+[HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main]
+"IE8RunOnceLastShown"=dword:00000001
+"IE8RunOncePerInstallCompleted"=dword:00000001
+"IE8RunOnceCompletionTime"=hex:
+"IE8TourShown"=dword:00000001
+"IE8TourShownTime"=hex:
+"IE8RunOnceLastShown_TIMESTAMP"=hex:
