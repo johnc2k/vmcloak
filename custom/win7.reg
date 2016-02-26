@@ -37,3 +37,11 @@ Windows Registry Editor Version 5.00
 "IE8TourShown"=dword:00000001
 "IE8TourShownTime"=hex:
 "IE8RunOnceLastShown_TIMESTAMP"=hex:
+
+; Win7: Disable: Upgrade to Win10 Icon
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Gwx]
+"DisableGwx"=dword:00000001
+
+; Win7: Disable: Downloading Win10 upgrade
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate]
+"DisableOSUpgrade"=dword:00000001
