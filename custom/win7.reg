@@ -14,10 +14,8 @@ Windows Registry Editor Version 5.00
 ; Win7: Disable: Smart Screen
 [HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System]
 "EnableSmartScreen"=dword:00000000
-
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer]
 "SmartScreenEnabled"="Off"
-
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\PhishingFilter]
 "EnabledV9"=dword:00000000
 
@@ -45,3 +43,19 @@ Windows Registry Editor Version 5.00
 ; Win7: Disable: Downloading Win10 upgrade
 [HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate]
 "DisableOSUpgrade"=dword:00000001
+
+; Win7: Disable: Windows Update
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update]
+"AUOptions"=dword:00000001
+
+; Win7: Disable: Windows Firewall
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile]
+"EnableFirewall"=dword:00000000
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile]
+"EnableFirewall"=dword:00000000
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile]
+"EnableFirewall"=dword:00000000
+
+; Win7: Disable: Windows Defender
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender]
+"DisableAntiSpyware"=dword:00000001
