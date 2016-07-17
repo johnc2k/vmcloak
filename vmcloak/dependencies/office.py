@@ -1,4 +1,4 @@
-# Copyright (C) 2014-2015 Jurriaan Bremer.
+# Copyright (C) 2014-2016 Jurriaan Bremer.
 # This file is part of VMCloak - http://www.vmcloak.org/.
 # See the file 'docs/LICENSE.txt' for copying permission.
 
@@ -16,26 +16,28 @@ config = """
 </Configuration>
 """
 
-class Office2007(Dependency):
-    name = "office2007"
+class Office(Dependency):
+    name = "office"
 
     def init(self):
         self.isopath = None
         self.serialkey = None
 
     def check(self):
-        if not self.isopath:
-            log.error("Please provide a serial key for Office 2007.")
+        if not self.serialkey:
+            log.error("Please provide a serial key for Office.")
             return False
 
-        if not os.path.isfile(self.isopath):
-            log.error("Please provide the Office 2007 installer ISO file.")
+        if not self.isopath or not os.path.isfile(self.isopath):
+            log.error("Please provide the Office installer ISO file.")
             return False
 
     def run(self):
-        self.disable_autorun()
 
-        self.m.attach_iso(self.isopath)
+        if self.i.vm == "virtualbox":
+            self.disable_autorun()
+            self.m.attach_iso(self.isopath)
+
         self.a.upload("C:\\config.xml", config % dict(serial_key=self.serialkey))
         self.a.execute("D:\\setup.exe /config C:\\config.xml")
 
@@ -43,4 +45,10 @@ class Office2007(Dependency):
         self.wait_process_exit("setup.exe")
 
         self.a.remove("C:\\config.xml")
-        self.m.detach_iso()
+
+        if self.i.vm == "virtualbox":
+            self.m.detach_iso()
+
+class Office2007(Office, Dependency):
+    """Backwards compatibility."""
+    name = "office2007"

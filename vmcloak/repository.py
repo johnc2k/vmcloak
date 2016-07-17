@@ -1,4 +1,4 @@
-# Copyright (C) 2014-2015 Jurriaan Bremer.
+# Copyright (C) 2014-2016 Jurriaan Bremer.
 # This file is part of VMCloak - http://www.vmcloak.org/.
 # See the file 'docs/LICENSE.txt' for copying permission.
 
@@ -13,6 +13,7 @@ conf_path = os.path.join(os.getenv("HOME"), ".vmcloak")
 image_path = os.path.join(conf_path, "image")
 vms_path = os.path.join(conf_path, "vms")
 deps_path = os.path.join(conf_path, "deps")
+iso_dst_path = os.path.join(conf_path, "iso")
 
 repository = os.path.join(conf_path, "repository.db")
 engine = create_engine("sqlite:///%s" % repository)
@@ -25,6 +26,7 @@ class Image(Base):
 
     id = Column(Integer, primary_key=True)
     mode = Column(String(16))
+    vm = Column(String(16))
     name = Column(String(64))
     path = Column(Text)
     osversion = Column(String(32))
@@ -35,6 +37,7 @@ class Image(Base):
     netmask = Column(String(32))
     gateway = Column(String(32))
     cpus = Column(Integer)
+    ramsize = Column(Integer)
 
 class Snapshot(Base):
     """Represents each snapshot that has been created."""
@@ -57,3 +60,6 @@ if not os.path.isdir(image_path):
 
 if not os.path.isdir(deps_path):
     os.mkdir(deps_path)
+
+if not os.path.isdir(iso_dst_path):
+    os.mkdir(iso_dst_path)

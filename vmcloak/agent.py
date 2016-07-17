@@ -1,12 +1,15 @@
-# Copyright (C) 2014-2015 Jurriaan Bremer.
+# Copyright (C) 2014-2016 Jurriaan Bremer.
 # This file is part of VMCloak - http://www.vmcloak.org/.
 # See the file 'docs/LICENSE.txt' for copying permission.
 
 import requests
+import logging
 
 from StringIO import StringIO
 
 from vmcloak.misc import wait_for_host
+
+log = logging.getLogger(__name__)
 
 class Agent(object):
     def __init__(self, ipaddr, port):
@@ -48,6 +51,11 @@ class Agent(object):
         """Remove a file or entire directory."""
         self.post("/remove", path=path)
 
+    def extract(self, dirpath, zipfile):
+        """Extract a zip file to folder."""
+        zipfile = open(zipfile, "rb")
+        self.postfile("/extract", {"zipfile": zipfile}, dirpath=dirpath)
+
     def shutdown(self):
         """Power off the machine."""
         self.execute("shutdown -s -t 0", async=True)
@@ -73,12 +81,12 @@ class Agent(object):
         # self.execute(cmdline % args, shell=True)
         self.execute(cmdline % args)
 
-    def static_ip(self, ipaddr, netmask, gateway):
+    def static_ip(self, ipaddr, netmask, gateway, interface):
         """Change the IP address of this machine."""
-        command = \
-            "netsh interface ip set address " \
-            "name=\"Local Area Connection\" static " \
-            "%s %s %s 1" % (ipaddr, netmask, gateway)
+        command = (
+            "netsh interface ip set address name=\"%s\" static %s %s %s 1"
+        ) % (interface, ipaddr, netmask, gateway)
+
         try:
             requests.post("http://%s:%s/execute" % (self.ipaddr, self.port),
                           data={"command": command}, timeout=5)
@@ -104,6 +112,7 @@ class Agent(object):
 
     def click(self, window_title, button_name):
         """Identify a window by its title and click one of its buttons."""
+        log.debug("Clicking window '%s' button '%s'", window_title, button_name)
         self.execute("C:\\vmcloak\\click.exe \"%s\" \"%s\"" % (
             window_title, button_name))
 
@@ -111,6 +120,7 @@ class Agent(object):
         """Identify a window by its title and click one of its buttons
         asynchronously. This is mostly used in cases where the click may or
         may not be required, leaving the clicking process hanging."""
+        log.debug("Clicking (async) window '%s' button '%s'", window_title, button_name)
         self.execute("C:\\vmcloak\\click.exe \"%s\" \"%s\"" % (
             window_title, button_name), async=True)
 

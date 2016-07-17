@@ -28,6 +28,7 @@ following blogpost: [http://jbremer.org/vmcloak3][blogpost].
 
 [blogpost]: http://jbremer.org/vmcloak3
 
+<<<<<<< HEAD
 Custom Mods
 -----------
 
@@ -36,3 +37,11 @@ packages, manually applied for now.
 
 * Win7
 * Office 2010
+=======
+Credits
+-------
+
+The development of the VMCloak project initially started out as part of the
+ITES Project at Avira, thanks to **Thorsten Sick**. Many thanks to
+**Rasmus Männa** for lots of great contributions lately.
+>>>>>>> 60236f0c3e0c5302a6a6e8c0c6e71ed1c83a1ca7
